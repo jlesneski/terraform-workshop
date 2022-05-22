@@ -40,7 +40,7 @@ stages:
         inputs:
           provider: 'aws'
           command: 'init'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/_jlesneski.terraform-workshop/terraform/s'
+          workingDirectory: '$(System.DefaultWorkingDirectory)'
           backendServiceAWS: 'lucidiaitAWS'
           backendAWSBucketName: 'lucidiaterraform'
           backendAWSKey: 'terraform/terraform.tfstate'
