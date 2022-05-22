@@ -2,7 +2,7 @@ resources:
   repositories:
     - repository: templates
       type: github
-      endpoint: github
+      endpoint: jlesneski
       name: jlesneski/terraform-templates
       ref: refs/head/main
 
