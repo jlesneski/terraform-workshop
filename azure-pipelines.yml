@@ -64,11 +64,11 @@ stages:
           workingDirectory: '$(System.DefaultWorkingDirectory)'
           environmentServiceNameAWS: lucidiaitAWS
 - stage: Deploy_Dev_APPLY
+  dependsOn: Dev_PLAN
   jobs:
     - deployment: 'DEV'
       environment: 'DEV'
     - job: Deploy_Dev_APPLY
-      dependsOn: Dev_PLAN
       pool:
         vmImage: ubuntu-latest
       steps:
@@ -115,9 +115,9 @@ stages:
           workingDirectory: '$(System.DefaultWorkingDirectory)'
           environmentServiceNameAWS: lucidiaitAWS
 - stage: QA_PLAN
+  dependsOn: Deploy_Dev_APPLY
   jobs:
     - job: QA_PLAN
-      dependsOn: Deploy_Dev_APPLY
       pool:
         vmImage: ubuntu-latest
       steps:
@@ -157,6 +157,7 @@ stages:
           workingDirectory: '$(System.DefaultWorkingDirectory)'
           environmentServiceNameAWS: lucidiaitAWS
 - stage: Deploy_QA_APPLY
+  dependsOn: QA_PLAN
   jobs:
     - deployment: 'QA'
       environment: 'QA'
