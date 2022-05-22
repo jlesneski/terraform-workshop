@@ -18,9 +18,9 @@ stages:
         targetPath: '$(Pipeline.Workspace)'
         artifact: 'terraform'
         publishLocation: 'pipeline'
-- stage: DeployDev(PLAN)
+- stage: DeployDev_PLAN
   jobs:
-    - job: DeployDevPLAN
+    - job: DeployDev_PLAN
       pool:
         vmImage: ubuntu-latest
       steps:
