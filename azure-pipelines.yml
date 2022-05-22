@@ -36,15 +36,15 @@ stages:
           pwd
           ls -laR
         displayName: 'Command Line Script'
-      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
-        displayName: 'Terraform init: aws'
+      - task: TerraformTaskV3@3
         inputs:
-          provider: aws
+          provider: 'aws'
+          command: 'init'
           workingDirectory: '$(System.DefaultWorkingDirectory)/_jlesneski.terraform-workshop/terraform/s'
-          backendServiceAWS: lucidiaitAWS
-          backendAWSBucketName: lucidiaterraform
-          backendAWSKey: terraform/terraform.tfstate
-      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+          backendServiceAWS: 'lucidiaitAWS'
+          backendAWSBucketName: 'lucidiaterraform'
+          backendAWSKey: 'terraform/terraform.tfstate'
+      - task: TerraformTaskV3@3
         displayName: 'TerraformWorkspace DEV'
         inputs:
           provider: aws
@@ -56,7 +56,7 @@ stages:
           backendServiceAWS: lucidiaitAWS
           backendAWSBucketName: lucidiaterraform
           backendAWSKey: terraform/terraform.tfstate
-      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-release-task.TerraformTaskV3@3
+      - task: TerraformTaskV3@3
         displayName: 'Terraform plan: aws'
         inputs:
           provider: aws
