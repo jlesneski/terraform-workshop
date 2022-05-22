@@ -14,7 +14,7 @@ variables:
 stages:
 - template: src/stages/build/build_terraform_v1.yml@templates
   parameters:
-    terraformArtifactName: $(ARTIFACT_NAME)
+    terraformArtifactName: ${{ variables.ARTIFACT_NAME }}
 
 - stage: Dev_PLAN
   jobs:
