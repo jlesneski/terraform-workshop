@@ -1,6 +1,6 @@
 resource "aws_network_interface" "vm1_nic1" {
   subnet_id   = aws_subnet.vms_subnet.id
-  private_ips = local.vm1_private_ip_addr[terraform.workspace]
+  private_ips = [local.vm1_private_ip_addr[terraform.workspace]]
 
   tags = {
     Name = lower("vm1-${terraform.workspace}-nic1")

@@ -9,7 +9,7 @@ locals {
         "QA"     = "10.102.1.64/27"
         "PROD"   = "10.100.1.64/27"
     }
-        vm1_private_ip_addr = { 
+    vm1_private_ip_addr = { 
         "DEV"    = "10.101.1.70"
         "QA"     = "10.102.1.70"
         "PROD"   = "10.100.1.70"
