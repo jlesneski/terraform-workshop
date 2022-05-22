@@ -144,7 +144,7 @@ stages:
           command: custom
           workingDirectory: '$(System.DefaultWorkingDirectory)'
           customCommand: workspace
-          commandOptions: 'new QA'
+          commandOptions: 'select QA'
           environmentServiceNameAWS: lucidiaitAWS
           backendServiceAWS: lucidiaitAWS
           backendAWSBucketName: lucidiaterraform
