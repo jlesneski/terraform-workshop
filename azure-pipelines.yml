@@ -22,7 +22,7 @@ stages:
     terraformArtifactName: ${{ variables.ARTIFACT_NAME }}
 
 - stage: QA_PLAN
-  dependsOn: Deploy_DEV_APPLY
+  dependsOn: DEV_Apply
   jobs:
     - job: QA_PLAN
       pool:
