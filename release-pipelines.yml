@@ -14,7 +14,7 @@ variables:
 
 jobs:
 - deployment: Deploy
-  displayName: DEV 
+  displayName: DEV(Plan) 
   environment: dev
   pool: 
     vmImage: $(vmImageName)
