@@ -21,59 +21,8 @@ stages:
   parameters:
     terraformArtifactName: ${{ variables.ARTIFACT_NAME }}
 
-- stage: Deploy_Dev_APPLY
-  dependsOn: Dev_PLAN
-  jobs:
-    - deployment: 'DEV'
-      environment: 'DEV'
-    - job: Deploy_Dev_APPLY
-      pool:
-        vmImage: ubuntu-latest
-      steps:
-      - task: DownloadBuildArtifacts@1
-        inputs:
-          buildType: 'current'
-          downloadType: 'single'
-          artifactName:  ${{ variables.ARTIFACT_NAME }}
-          downloadPath: '$(System.ArtifactsDirectory)'
-      - task: TerraformInstaller@0
-        displayName: 'Install Terraform latest'
-      - task: TerraformTaskV3@3
-        inputs:
-          provider: 'aws'
-          command: 'init'
-          workingDirectory: '$(System.DefaultWorkingDirectory)'
-          backendServiceAWS: 'lucidiaitAWS'
-          backendAWSBucketName: 'lucidiaterraform'
-          backendAWSKey: 'terraform/terraform.tfstate'
-      - task: TerraformTaskV3@3
-        displayName: 'TerraformWorkspace DEV'
-        inputs:
-          provider: aws
-          command: custom
-          workingDirectory: '$(System.DefaultWorkingDirectory)'
-          customCommand: workspace
-          commandOptions: 'select DEV'
-          environmentServiceNameAWS: lucidiaitAWS
-          backendServiceAWS: lucidiaitAWS
-          backendAWSBucketName: lucidiaterraform
-          backendAWSKey: terraform/terraform.tfstate
-      - task: TerraformTaskV3@3
-        displayName: 'Terraform plan: aws'
-        inputs:
-          provider: aws
-          command: plan
-          workingDirectory: '$(System.DefaultWorkingDirectory)'
-          environmentServiceNameAWS: lucidiaitAWS
-      - task: TerraformTaskV3@3
-        displayName: 'Terraform apply: aws'
-        inputs:
-          provider: aws
-          command: apply
-          workingDirectory: '$(System.DefaultWorkingDirectory)'
-          environmentServiceNameAWS: lucidiaitAWS
 - stage: QA_PLAN
-  dependsOn: Deploy_Dev_APPLY
+  dependsOn: Deploy_DEV_APPLY
   jobs:
     - job: QA_PLAN
       pool:
