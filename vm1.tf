@@ -8,7 +8,7 @@ resource "aws_network_interface" "vm1_nic1" {
 }
 
 resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.ubuntu_latest.id
   instance_type = "t3.micro"
 
   network_interface {
