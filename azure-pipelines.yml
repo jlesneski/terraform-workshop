@@ -3,7 +3,7 @@ resources:
     - repository: templates
       type: github
       endpoint: jlesneski
-      name: jlesneski/terraform-templates
+      name: terraform-templates
       ref: refs/head/main
 
 trigger:
