@@ -12,55 +12,15 @@ variables:
   ARTIFACT_NAME: 'terraformArtifact'
 
 stages:
+##### Run Build #####
 - template: src/stages/build/build_terraform_v1.yml@templates
   parameters:
     terraformArtifactName: ${{ variables.ARTIFACT_NAME }}
+##### Run Deploy #####
+- template: src/stages/build/deploy_terraform_v1.yml@templates
+  parameters:
+    terraformArtifactName: ${{ variables.ARTIFACT_NAME }}
 
-- stage: Dev_PLAN
-  jobs:
-    - job: Dev_PLAN
-      pool:
-        vmImage: ubuntu-latest
-      steps:
-      - task: DownloadBuildArtifacts@1
-        inputs:
-          buildType: 'current'
-          downloadType: 'single'
-          artifactName: ${{ variables.ARTIFACT_NAME }}
-          downloadPath: '$(System.ArtifactsDirectory)'
-      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
-        displayName: 'Install Terraform latest'
-      - script: |
-          pwd
-          ls -laR
-        displayName: 'Command Line Script'
-      - task: TerraformTaskV3@3
-        inputs:
-          provider: 'aws'
-          command: 'init'
-          workingDirectory: '$(System.DefaultWorkingDirectory)'
-          backendServiceAWS: 'lucidiaitAWS'
-          backendAWSBucketName: 'lucidiaterraform'
-          backendAWSKey: 'terraform/terraform.tfstate'
-      - task: TerraformTaskV3@3
-        displayName: 'TerraformWorkspace DEV'
-        inputs:
-          provider: aws
-          command: custom
-          workingDirectory: '$(System.DefaultWorkingDirectory)'
-          customCommand: workspace
-          commandOptions: 'select DEV'
-          environmentServiceNameAWS: lucidiaitAWS
-          backendServiceAWS: lucidiaitAWS
-          backendAWSBucketName: lucidiaterraform
-          backendAWSKey: terraform/terraform.tfstate
-      - task: TerraformTaskV3@3
-        displayName: 'Terraform plan: aws'
-        inputs:
-          provider: aws
-          command: plan
-          workingDirectory: '$(System.DefaultWorkingDirectory)'
-          environmentServiceNameAWS: lucidiaitAWS
 - stage: Deploy_Dev_APPLY
   dependsOn: Dev_PLAN
   jobs:
