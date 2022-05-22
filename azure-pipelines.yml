@@ -49,7 +49,7 @@ stages:
         inputs:
           provider: aws
           command: custom
-          workingDirectory: '$(System.DefaultWorkingDirectory)/_jlesneski.terraform-workshop/terraform/s'
+          workingDirectory: '$(System.DefaultWorkingDirectory)'
           customCommand: workspace
           commandOptions: 'select DEV'
           environmentServiceNameAWS: lucidiaitAWS
@@ -61,5 +61,5 @@ stages:
         inputs:
           provider: aws
           command: plan
-          workingDirectory: '$(System.DefaultWorkingDirectory)/_jlesneski.terraform-workshop/terraform/s'
+          workingDirectory: '$(System.DefaultWorkingDirectory)'
           environmentServiceNameAWS: lucidiaitAWS
