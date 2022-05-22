@@ -18,9 +18,9 @@ stages:
         targetPath: '$(Pipeline.Workspace)'
         artifact: 'terraform'
         publishLocation: 'pipeline'
-- stage: DeployDev_PLAN
+- stage: Dev_PLAN
   jobs:
-    - job: DeployDev_PLAN
+    - job: Dev_PLAN
       pool:
         vmImage: ubuntu-latest
       steps:
@@ -63,11 +63,11 @@ stages:
           command: plan
           workingDirectory: '$(System.DefaultWorkingDirectory)'
           environmentServiceNameAWS: lucidiaitAWS
-- stage: DeployDev_APPLY
+- stage: Deploy_Dev_APPLY
   jobs:
-    - deployment: 'Deploy DEV'
+    - deployment: 'DEV'
       environment: 'DEV'
-    - job: DeployDev_APPLY
+    - job: Deploy_Dev_APPLY
       pool:
         vmImage: ubuntu-latest
       steps:
