@@ -26,7 +26,7 @@ stages:
         inputs:
           buildType: 'current'
           downloadType: 'single'
-          artifactName: $(ARTIFACT_NAME)
+          artifactName: ${{ variables.ARTIFACT_NAME }}
           downloadPath: '$(System.ArtifactsDirectory)'
       - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
         displayName: 'Install Terraform latest'
@@ -74,7 +74,7 @@ stages:
         inputs:
           buildType: 'current'
           downloadType: 'single'
-          artifactName: $(ARTIFACT_NAME)
+          artifactName:  ${{ variables.ARTIFACT_NAME }}
           downloadPath: '$(System.ArtifactsDirectory)'
       - task: TerraformInstaller@0
         displayName: 'Install Terraform latest'
@@ -123,7 +123,7 @@ stages:
         inputs:
           buildType: 'current'
           downloadType: 'single'
-          artifactName: $(ARTIFACT_NAME)
+          artifactName:  ${{ variables.ARTIFACT_NAME }}
           downloadPath: '$(System.ArtifactsDirectory)'
       - task: TerraformInstaller@0
         displayName: 'Install Terraform latest'
@@ -167,7 +167,7 @@ stages:
         inputs:
           buildType: 'current'
           downloadType: 'single'
-          artifactName: 'terraform'
+          artifactName:  ${{ variables.ARTIFACT_NAME }}
           downloadPath: '$(System.ArtifactsDirectory)'
       - task: TerraformInstaller@0
         displayName: 'Install Terraform latest'
