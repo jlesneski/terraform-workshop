@@ -1,9 +1,10 @@
 resources:
   repositories:
     - repository: templates
-      type: git
-      name: terraform-templates
-      ref: refs/heads/master
+      type: github
+      endpoint: github
+      name: jlesneski/terraform-templates
+      ref: refs/head/main
 
 trigger:
 - main
