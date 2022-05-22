@@ -162,7 +162,6 @@ stages:
     - deployment: 'QA'
       environment: 'QA'
     - job: Deploy_QA_APPLY
-      dependsOn: QA_PLAN
       pool:
         vmImage: ubuntu-latest
       steps:
