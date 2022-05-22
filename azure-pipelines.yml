@@ -63,9 +63,11 @@ stages:
           command: plan
           workingDirectory: '$(System.DefaultWorkingDirectory)'
           environmentServiceNameAWS: lucidiaitAWS
-- stage: DeployDev_PLAN
+- stage: DeployDev_APPLY
   jobs:
-    - job: DeployDev_PLAN
+    - deployment: 'Deploy DEV'
+      environment: 'DEV'
+    - job: DeployDev_APPLY
       pool:
         vmImage: ubuntu-latest
       steps:
