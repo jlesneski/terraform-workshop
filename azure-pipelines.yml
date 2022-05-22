@@ -4,7 +4,7 @@ resources:
       type: github
       endpoint: github.com_jlesneski
       name: terraform-templates
-      ref: refs/head/main
+      ref: main
 
 trigger:
 - main
