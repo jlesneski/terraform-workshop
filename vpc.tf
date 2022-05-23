@@ -10,6 +10,6 @@ resource "aws_subnet" "vms_subnet" {
   cidr_block        = local.vm_subnet_cidr[terraform.workspace]
 
   tags = {
-    Name = "vms-subnet"
+    Name = lower("vms-subnet-${terraform.workspace}")
   }
 }
